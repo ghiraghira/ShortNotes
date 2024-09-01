@@ -5,14 +5,12 @@ import { faSquarePlus} from '@fortawesome/free-solid-svg-icons'
 import { faSquareXmark } from '@fortawesome/free-solid-svg-icons'
 
 const Notitas = () => {
-  // Estado para almacenar las notas
   const [notes, setNotes] = useState([]);
 
   useEffect(() => {
     document.title = 'Notes';
   }, []);
 
-  // Cargar notas del localStorage al iniciar
   useEffect(() => {
     const savedNotes = localStorage.getItem('notes');
     if (savedNotes) {
@@ -20,7 +18,6 @@ const Notitas = () => {
     }
   }, []);
 
-  // Guardar notas en el localStorage cuando cambie el estado
   useEffect(() => {
     if (notes.length > 0) {
       localStorage.setItem('notes', JSON.stringify(notes));
@@ -29,12 +26,10 @@ const Notitas = () => {
     }
   }, [notes]);
 
-  // Agregar una nueva nota
   const addNote = () => {
     setNotes([...notes, '']);
   };
 
-  // Actualizar el contenido de una nota
   const updateNote = (index, newText) => {
     const updatedNotes = notes.map((note, i) =>
       i === index ? newText : note
@@ -42,7 +37,6 @@ const Notitas = () => {
     setNotes(updatedNotes);
   };
 
-  // Eliminar una nota
   const deleteNote = (index) => {
     const updatedNotes = notes.filter((_, i) => i !== index);
     setNotes(updatedNotes);
